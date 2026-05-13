@@ -1,5 +1,5 @@
 {
     "data_file": "data/tasks.json",
-    "log_file": "app.log",
+    "log_file": "logs/app.log",
     "default_priority": "medium"
 }

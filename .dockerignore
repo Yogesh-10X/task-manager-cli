@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+app.log
+data/tasks.json
+.git
+.vscode/
