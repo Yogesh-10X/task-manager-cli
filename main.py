@@ -1,15 +1,14 @@
 from app.tasks import add_task, get_tasks, delete_task, mark_complete
 import argparse
+
 def handle_args():
     parser = argparse.ArgumentParser(description="Task Manager CLI")
-
     parser.add_argument("command", nargs="?", help="Command (add, list, delete, complete)")
     parser.add_argument("value", nargs="?", help="Task title or ID")
     parser.add_argument("--priority", default="medium", help="Task priority")
-
     args = parser.parse_args()
-
     return args
+
 def show_menu():
     print("\n==== Task Manager ====")
     print("1. Add Task")
@@ -60,32 +59,26 @@ def main():
             break
         else:
             print("Invalid choice. Try again.")
+
 if __name__ == "__main__":
     args = handle_args()
-
     if args.command:
-
         if args.command == "add":
             add_task(args.value, args.priority)
             print("Task added!")
-
         elif args.command == "list":
             tasks = get_tasks()
             for task in tasks:
                 status = "✔" if task["completed"] else "✘"
                 print(f'{task["id"]}. {task["title"]} [{status}] (Priority: {task.get("priority", "medium")})')
-
         elif args.command == "delete":
             delete_task(int(args.value))
             print("Task deleted!")
-
         elif args.command == "complete":
             mark_complete(int(args.value))
             print("Task completed!")
-
         else:
             print("Unknown command")
-
     else:
         main()
 
